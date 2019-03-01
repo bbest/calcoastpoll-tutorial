@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Lesson 2 Collaborate: git, Github | California Coastal Poll Tutorial</title>
+  <meta name="description" content="These Data Carpentry lessons are for teaching simple usage of advanced spatial analysis libraries (sf, leaflet, ggmap and ggplot2).">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Lesson 2 Collaborate: git, Github | California Coastal Poll Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These Data Carpentry lessons are for teaching simple usage of advanced spatial analysis libraries (sf, leaflet, ggmap and ggplot2)." />
+  <meta name="github-repo" content="bbest/R-adv-spatial-lessons" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 2 Collaborate: git, Github | California Coastal Poll Tutorial" />
+  
+  <meta name="twitter:description" content="These Data Carpentry lessons are for teaching simple usage of advanced spatial analysis libraries (sf, leaflet, ggmap and ggplot2)." />
+  
+
+<meta name="author" content="Ben Best">
+
+
+<meta name="date" content="2019-03-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+<link rel="next" href="analysis.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/lesson.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">CA Coastal Poll Tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i><b>1.1</b> Overview</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#install-software"><i class="fa fa-check"></i><b>1.2.1</b> Install software</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#create-github-login"><i class="fa fa-check"></i><b>1.2.2</b> Create Github login</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#launch-rstudio"><i class="fa fa-check"></i><b>1.3</b> Launch RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html"><i class="fa fa-check"></i><b>2</b> Collaborate: git, Github</a><ul>
+<li class="chapter" data-level="2.1" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#overview-1"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#what-are-git-and-github"><i class="fa fa-check"></i><b>2.2</b> What are git and Github?</a></li>
+<li class="chapter" data-level="2.3" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#create-repository-in-github"><i class="fa fa-check"></i><b>2.3</b> Create repository in Github</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#edit-readme.md-as-markdown-and-commit-changes"><i class="fa fa-check"></i><b>2.3.1</b> Edit <code>README.md</code> as markdown and commit changes</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#create-docsindex.md-and-turn-on-github-pages"><i class="fa fa-check"></i><b>2.4</b> Create <code>docs/index.md</code> and turn on Github Pages</a></li>
+<li class="chapter" data-level="2.5" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#setup-git"><i class="fa fa-check"></i><b>2.5</b> Setup git</a></li>
+<li class="chapter" data-level="2.6" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#github-workflows"><i class="fa fa-check"></i><b>2.6</b> Github Workflows</a></li>
+<li class="chapter" data-level="2.7" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#create-rstudio-project-with-github-repo"><i class="fa fa-check"></i><b>2.7</b> Create RStudio Project with Github repo</a></li>
+<li class="chapter" data-level="2.8" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#create-docsindex.rmd-in-rmarkdown"><i class="fa fa-check"></i><b>2.8</b> Create <code>docs/index.Rmd</code> in Rmarkdown</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="analysis.html"><a href="analysis.html"><i class="fa fa-check"></i><b>3</b> Analysis in Rmarkdown</a><ul>
+<li class="chapter" data-level="3.1" data-path="analysis.html"><a href="analysis.html#overview-2"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="analysis.html"><a href="analysis.html#download"><i class="fa fa-check"></i><b>3.2</b> Download</a></li>
+<li class="chapter" data-level="3.3" data-path="analysis.html"><a href="analysis.html#read"><i class="fa fa-check"></i><b>3.3</b> Read</a></li>
+<li class="chapter" data-level="3.4" data-path="analysis.html"><a href="analysis.html#rmarkdown-options"><i class="fa fa-check"></i><b>3.4</b> Rmarkdown options</a></li>
+<li class="chapter" data-level="3.5" data-path="analysis.html"><a href="analysis.html#key-points"><i class="fa fa-check"></i><b>3.5</b> Key Points</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">California Coastal Poll Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="collaborate-git-github" class="section level1">
+<h1><span class="header-section-number">Lesson 2</span> Collaborate: git, Github</h1>
+<div id="overview-1" class="section level2 objectives">
+<h2><span class="header-section-number">2.1</span> Overview</h2>
+<p><strong>Objectives</strong></p>
+<ol style="list-style-type: decimal">
+<li><strong>Create a repository</strong> in Github</li>
+<li>Learn basic <strong>markdown</strong> to format text in <code>README.md</code>.</li>
+<li>Commit changes.</li>
+<li>Create <code>docs/index.md</code> as a temporary website.</li>
+<li>Create an Rmarkdown document at <code>docs/index.Rmd</code> as new website.</li>
+</ol>
+</div>
+<div id="what-are-git-and-github" class="section level2">
+<h2><span class="header-section-number">2.2</span> What are git and Github?</h2>
+<p>The two main tools you’ll learn about to start are:</p>
+<ul>
+<li><p><a href="https://git-scm.com/"><strong>Git</strong></a> is a version control system that lets you track changes to files over time. These files can be any kind of file (eg doc, pdf, xls), but free text differences are most easily visible (eg txt, csv, md). You can rollback changes made by you, or others. This facilitates a playground for collaboration, without fear of experimentation (you can always rollback changes).</p></li>
+<li><p><a href="https://github.com/"><strong>Github</strong></a> is a website for storing your git versioned files remotely. It has many nice features to be able visualize differences between <a href="https://help.github.com/articles/rendering-and-diffing-images/">images</a>, <a href="https://help.github.com/articles/mapping-geojson-files-on-github/">geojson spatial</a> files with <a href="https://github.com/blog/1772-diffable-more-customizable-maps">geojson differencing</a>, <a href="https://help.github.com/articles/rendering-csv-and-tsv-data/">csv tables</a>, and <a href="https://help.github.com/articles/rendering-differences-in-prose-documents/">track changes in text</a>.</p></li>
+</ul>
+</div>
+<div id="create-repository-in-github" class="section level2">
+<h2><span class="header-section-number">2.3</span> Create repository in Github</h2>
+<p>Now you will create a Github repository for this project.</p>
+<ol style="list-style-type: decimal">
+<li><p><a href="https://help.github.com/articles/create-a-repo/">Create a repository</a> called <code>calcoastpoll-analysis</code>.</p>
+<img src="figs/github_repo-create.png" width="200"/>
+<p>Please be sure to tick the box to <strong>Initialize this repository with a README</strong>. Otherwise defaults are fine.</p>
+<img src="figs/github_create-repo.png" width="600"/></li>
+</ol>
+<div id="edit-readme.md-as-markdown-and-commit-changes" class="section level3">
+<h3><span class="header-section-number">2.3.1</span> Edit <code>README.md</code> as markdown and commit changes</h3>
+<p><a href="https://help.github.com/articles/create-a-repo/#commit-your-first-change">Commit your first change</a> by editing the <code>README.md</code> which is in <strong>markdown</strong>, simple syntax for formatting web content (ie HTML). Now update the contents of the <code>README.md</code> with the following, having a link and a numbered list:</p>
+<div class="sourceCode"><pre class="sourceCode md"><code class="sourceCode markdown"><span class="fu"># calcoastpoll-analysis</span>
+California Coastal Poll analysis at <span class="ot">[CSUCI ESRM](https://esrm.zone)</span>
+
+<span class="fu">## Introduction</span>
+
+This repository demonstrates **software** and _formats_:
+
+1. <span class="fl">**Git**</span>
+<span class="fl">1. **Github**</span>
+<span class="fl">1. _Markdown_</span>
+<span class="fl">1. _Rmarkdown_</span>
+
+<span class="fu">## Conclusion</span>
+
+![](https://octodex.github.com/images/labtocat.png)</code></pre></div>
+<p>Now click on the <span class="octicon octicon-eye"></span> Preview changes to see the markdown rendered as HTML:</p>
+<img src="figs/github_preview_README-md.png" width="500"/>
+<p>Notice the syntax for:</p>
+<ul>
+<li><strong>numbered list</strong> gets automatically sequenced: <code>1.</code>, <code>1.</code></li>
+<li><strong>headers</strong> get rendered at multiple levels: <code>#</code>, <code>##</code></li>
+<li><strong>link</strong>: <code>[](http://...)</code></li>
+<li><strong>image</strong>: <code>![](http://...)</code></li>
+<li><em>italics</em>: <code>_word_</code></li>
+<li><strong>bold</strong>: <code>**word**</code></li>
+</ul>
+<p>See <a href="https://guides.github.com/features/mastering-markdown/">Mastering Markdown · GitHub Guides</a> and add some more personalized content to the README of your own, like a bulleted list or blockquote.</p>
+<p>Commit changes with a message.</p>
+<div class="figure">
+<img src="figs/github_commit.png" />
+
+</div>
+<p>Check out the Raw, Blame and History buttons in the upper right.</p>
+</div>
+</div>
+<div id="create-docsindex.md-and-turn-on-github-pages" class="section level2">
+<h2><span class="header-section-number">2.4</span> Create <code>docs/index.md</code> and turn on Github Pages</h2>
+<p>Now we’ll create a placeholder for a website. Go to your main repository site by clicking on the USER/calcoastpoll-analysis link at top left, and then click on the “Create new file” button and enter <code>docs/index.md</code>. Paste in something simple (we’ll delete this later) like:</p>
+<div class="sourceCode"><pre class="sourceCode md"><code class="sourceCode markdown"><span class="fu"># Hello world</span>
+
+Just testing.</code></pre></div>
+<p>Now we’ll turn on the hosting of a website for this repository using the <code>docs</code> folder with the <a href="https://pages.github.com">Github Pages</a> feature.</p>
+<p>Go to the <strong>Settings</strong> top tab (and default Options left tab), scroll down to <strong>Github Pages</strong> and update the <strong>Source</strong> to using the <code>/docs</code> folder:</p>
+<div class="figure">
+<img src="figs/github_pages-docs.png" />
+
+</div>
+<p>Now you should be able to visit your Github Pages at:</p>
+<p><code>https://USER.github.io/calcoastpoll-analysis</code></p>
+<p>Be sure to replace <code>USER</code> with your username. It should something like this:</p>
+<div class="figure">
+<img src="figs/github_pages-basic.png" />
+
+</div>
+<p>The extra repository header “calcoastpoll-analysis” and footer “This site is open source. Improve this page.” come from Github’s default use of a static website templating system called <a href="https://jekyllrb.com">Jekyll</a>, which we’re not going to use.</p>
+<p>Instead, we’ll next get this repository onto our own machine, weave in chunks of interpreted R code with basic formatted markdown and generate our own data-driven web page to replace this <code>index.md</code>.</p>
+</div>
+<div id="setup-git" class="section level2">
+<h2><span class="header-section-number">2.5</span> Setup git</h2>
+<p>To get the repository onto your local machine you’ll need to configure the previously installed git on your machine.</p>
+<p>Open up the Git Bash on Windows, or Terminal on Mac and type the following on the command line, replacing:</p>
+<div class="sourceCode"><pre class="sourceCode bash"><code class="sourceCode bash"><span class="co"># display your version of git</span>
+<span class="fu">git</span> --version
+
+<span class="co"># name: replace USER with your Github user account</span>
+<span class="fu">git</span> config –-global user.name USER
+
+<span class="co"># email: replace USER@csuci.edu with the email you used to register with Github</span>
+<span class="fu">git</span> config –-global user.email USER@csuci.edu
+
+<span class="co"># list your config to confirm user.* variables set</span>
+<span class="fu">git</span> config --list</code></pre></div>
+</div>
+<div id="github-workflows" class="section level2">
+<h2><span class="header-section-number">2.6</span> Github Workflows</h2>
+<p>The two most common workflow models for working Github repositories is based on your permissions:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>writable</strong>: Push &amp; Pull (simplest)</p></li>
+<li><p><strong>read only</strong>: Fork &amp; Pull Request (extra steps)</p></li>
+</ol>
+<p>We will only go over the first writable mode. For more on the second mode, see <a href="https://guides.github.com/activities/forking/">Forking Projects · GitHub Guides</a>.</p>
+<p><strong>Push &amp; Pull:</strong></p>
+<table>
+<thead>
+<tr class="header">
+<th>repo location</th>
+<th align="center">initialize <i class="fa fa-arrow-down"></i></th>
+<th align="center">edit <i class="fa fa-arrow-up"></i></th>
+<th align="center">update <i class="fa fa-arrow-down"></i></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><i class="fa fa-cloud"></i> <code>github.com/OWNER/REPO</code></td>
+<td align="center"><a href="https://help.github.com/articles/create-a-repo/"><strong>create</strong></a> <span class="octicon octicon-plus"></span></td>
+<td align="center"></td>
+<td align="center"></td>
+</tr>
+<tr class="even">
+<td><i class="fa fa-desktop"></i> <code>~/github/REPO</code></td>
+<td align="center"><a href="https://help.github.com/articles/fetching-a-remote"><strong>clone</strong></a> <span class="octicon octicon-desktop-download"></span></td>
+<td align="center"><a href="http://git-scm.com/docs/git-commit"><strong>commit</strong></a> <span class="octicon octicon-git-commit"></span>, <a href="https://help.github.com/articles/pushing-to-a-remote/"><strong>push</strong></a> <span class="octicon octicon-cloud-upload"></span></td>
+<td align="center"><a href="https://help.github.com/articles/fetching-a-remote/#pull"><strong>pull</strong></a> <span class="octicon octicon-cloud-download"></span></td>
+</tr>
+</tbody>
+</table>
+<p>Note that OWNER could be either an individual USER or group ORGANIZATION, which has member USERs.</p>
+</div>
+<div id="create-rstudio-project-with-github-repo" class="section level2">
+<h2><span class="header-section-number">2.7</span> Create RStudio Project with Github repo</h2>
+<p>Next, you will <a href="https://help.github.com/articles/fetching-a-remote">clone the repository</a> onto your local machine using RStudio. I recommend creating it in a folder <code>github</code> under your user or Documents folder.</p>
+<p>Open RStudio and under the menu File -&gt; New Project… -&gt; Version Control -&gt; git and enter the URL with the <code>.git</code> extension (also available from the repository’s green Clone button):</p>
+<img src="figs/rstudio_clone.png" width="300"/>
+<p>If it all works correctly then you should see the files downloaded and showing up in the Files pane of RStudio. If RStudio is configured correctly to work with git, then you should also see a Git pane.</p>
+</div>
+<div id="create-docsindex.rmd-in-rmarkdown" class="section level2">
+<h2><span class="header-section-number">2.8</span> Create <code>docs/index.Rmd</code> in Rmarkdown</h2>
+<p>Rmarkdown allows you to weave markdown text with chunks of R code to be evaluated to output content like tables and plots.</p>
+<p>File -&gt; New File -&gt; Rmarkdown… -&gt; Document of output format HTML, OK.</p>
+<img src="figs/rstudio_new-rmd.png" width="300"/>
+<p>You can give it a Title of “Analysis”. After you click OK, most importantly File -&gt; Save as <code>index</code> (which will get named with the filename extension <code>index.Rmd</code>).</p>
+<p>Some initial text is already provided for you. Let’s go ahead and click on the “Knit” button at the top of the code pane.</p>
+<p>Notice how the markdown is rendered similar to as before + <strong>R code chunks</strong> are surrounded by 3 backticks and <code>{r LABEL}</code>. These are evaluated and return the output text in the case of <code>summary(cars)</code> and the output plot in the case of <code>plot(pressure)</code>.</p>
+<p>Notice how the code <code>plot(pressure)</code> is not shown in the HTML output because of the R code chunk option <code>echo=FALSE</code>.</p>
+<p>Before we continue exploring Rmarkdown, visit the Git pane, check all modified (M) or untracked (?) files, click Commit, enter a message like “added index.Rmd” and click the “Commit” button. Then Push (up green arrow) to push the locally committed changes on your machine up to the Github repository online.</p>
+<p>This will update <a href="https://github.com/USER/calcoastpoll-analysis" class="uri">https://github.com/USER/calcoastpoll-analysis</a>, and now you can also see your project website with a default <code>index.html</code> viewable at <a href="http://USER.github.io/calcoastpoll-analysis" class="uri">http://USER.github.io/calcoastpoll-analysis</a></p>
+<p>For more on Rmarkdown:</p>
+<ul>
+<li><a href="https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf">rmarkdown cheatsheet.pdf</a></li>
+<li><a href="http://rmarkdown.rstudio.com">rmarkdown.rstudio.com</a></li>
+</ul>
+
+</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/lesson.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="analysis.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bbest/calcoastpoll-tutorial/edit/master/01-collaborate.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["calcoastpoll-tutorial.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+# Analysis in Rmarkdown {#analysis}
+
+## Overview {.objectives}
+
+**Objectives**
+
+Learn variety of methods for working in R:
+
+- Download files
+- Use paths relative to `*.Rproject` with `here::here()`
+
+## Download
+
+## Read
+
+How do you read data from an Excel spreadsheet?
+
+- [Tidyverse packages - Tidyverse](https://www.tidyverse.org/packages/)
+- [CRAN Task Views](https://cran.r-project.org/web/views/)
+
+
+## Rmarkdown options
+
+[R Markdown](https://rmarkdown.rstudio.com/):
+
+- [3.1 HTML document | R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/html-document.html#code-folding)
+
+```yaml
+---
+title: "Analysis"
+output: html_document
+---
+```
+
+```yaml
+output:
+  html_document:
+    code_folding: hide
+```
+
+
+```r
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```r
+knitr::opts_chunk$set(echo = TRUE, message = F, warning = F)
+```
+
+## Key Points {.keypoints}
+
+- ...
+
+

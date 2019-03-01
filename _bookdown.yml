@@ -1,0 +1,5 @@
+book_filename: "calcoastpoll-tutorial"
+language:
+  ui:
+    chapter_name: "Lesson "
+output_dir: "docs"

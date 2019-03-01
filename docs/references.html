@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>References | California Coastal Poll Tutorial</title>
+  <meta name="description" content="These Data Carpentry lessons are for teaching simple usage of advanced spatial analysis libraries (sf, leaflet, ggmap and ggplot2).">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="References | California Coastal Poll Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These Data Carpentry lessons are for teaching simple usage of advanced spatial analysis libraries (sf, leaflet, ggmap and ggplot2)." />
+  <meta name="github-repo" content="bbest/R-adv-spatial-lessons" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="References | California Coastal Poll Tutorial" />
+  
+  <meta name="twitter:description" content="These Data Carpentry lessons are for teaching simple usage of advanced spatial analysis libraries (sf, leaflet, ggmap and ggplot2)." />
+  
+
+<meta name="author" content="Ben Best">
+
+
+<meta name="date" content="2019-03-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="tidy.html">
+<link rel="next" href="setup-skip.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.2/leaflet-providers-plugin.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/PopupTable-0.0.1/popup.css" rel="stylesheet" />
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/lesson.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">CA Coastal Poll Tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i><b>1.1</b> Overview</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#install-software"><i class="fa fa-check"></i><b>1.2.1</b> Install software</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#create-github-login"><i class="fa fa-check"></i><b>1.2.2</b> Create Github login</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#launch-rstudio"><i class="fa fa-check"></i><b>1.3</b> Launch RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html"><i class="fa fa-check"></i><b>2</b> Collaborate: git, Github</a><ul>
+<li class="chapter" data-level="2.1" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#overview-1"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#what-are-git-and-github"><i class="fa fa-check"></i><b>2.2</b> What are git and Github?</a></li>
+<li class="chapter" data-level="2.3" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#create-repository-calcoastpoll-analysis"><i class="fa fa-check"></i><b>2.3</b> Create repository <code>calcoastpoll-analysis</code></a><ul>
+<li class="chapter" data-level="2.3.1" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#edit-readme.md-in-markdown"><i class="fa fa-check"></i><b>2.3.1</b> Edit <code>README.md</code> in Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#create-index.html"><i class="fa fa-check"></i><b>2.4</b> Create <code>index.html</code></a></li>
+<li class="chapter" data-level="2.5" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#setup-git"><i class="fa fa-check"></i><b>2.5</b> Setup Git</a></li>
+<li class="chapter" data-level="2.6" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#github-workflows"><i class="fa fa-check"></i><b>2.6</b> Github Workflows</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#push-pull"><i class="fa fa-check"></i><b>2.6.1</b> Push &amp; Pull</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#create-rstudio-project-with-git-repository"><i class="fa fa-check"></i><b>2.7</b> Create RStudio Project with Git Repository</a></li>
+<li class="chapter" data-level="2.8" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#create-index.rmd-in-rmarkdown"><i class="fa fa-check"></i><b>2.8</b> Create <code>index.Rmd</code> in Rmarkdown</a></li>
+<li class="chapter" data-level="2.9" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#exercise-intertidal-sites-dataset"><i class="fa fa-check"></i><b>2.9</b> Exercise: Intertidal Sites Dataset</a><ul>
+<li class="chapter" data-level="2.9.1" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#task-provide-excel-cell-ranges-for-how-you-would-divide-data-into-tables"><i class="fa fa-check"></i><b>2.9.1</b> Task: Provide Excel cell ranges for how you would divide data into tables?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="interactive.html"><a href="interactive.html"><i class="fa fa-check"></i><b>3</b> Interactive Maps</a><ul>
+<li class="chapter" data-level="3.1" data-path="interactive.html"><a href="interactive.html#overview-2"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="interactive.html"><a href="interactive.html#things-youll-need-to-complete-this-tutorial"><i class="fa fa-check"></i><b>3.2</b> Things You’ll Need to Complete this Tutorial</a></li>
+<li class="chapter" data-level="3.3" data-path="interactive.html"><a href="interactive.html#states-ggplot2"><i class="fa fa-check"></i><b>3.3</b> States: ggplot2</a></li>
+<li class="chapter" data-level="3.4" data-path="interactive.html"><a href="interactive.html#states-plotly"><i class="fa fa-check"></i><b>3.4</b> States: plotly</a></li>
+<li class="chapter" data-level="3.5" data-path="interactive.html"><a href="interactive.html#states-mapview"><i class="fa fa-check"></i><b>3.5</b> States: mapview</a></li>
+<li class="chapter" data-level="3.6" data-path="interactive.html"><a href="interactive.html#states-leaflet"><i class="fa fa-check"></i><b>3.6</b> States: leaflet</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="interactive.html"><a href="interactive.html#choropleth"><i class="fa fa-check"></i><b>3.6.1</b> Choropleth</a></li>
+<li class="chapter" data-level="3.6.2" data-path="interactive.html"><a href="interactive.html#popups-and-legend"><i class="fa fa-check"></i><b>3.6.2</b> Popups and Legend</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="interactive.html"><a href="interactive.html#challenge-leaflet-for-regions"><i class="fa fa-check"></i><b>3.7</b> Challenge: leaflet for regions</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="interactive.html"><a href="interactive.html#answers"><i class="fa fa-check"></i><b>3.7.1</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="interactive.html"><a href="interactive.html#raster-leaflet"><i class="fa fa-check"></i><b>3.8</b> Raster: leaflet</a></li>
+<li class="chapter" data-level="3.9" data-path="interactive.html"><a href="interactive.html#key-points"><i class="fa fa-check"></i><b>3.9</b> Key Points</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tidy.html"><a href="tidy.html"><i class="fa fa-check"></i><b>4</b> Tidy Spatial Analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="tidy.html"><a href="tidy.html#overview-3"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="tidy.html"><a href="tidy.html#prerequisites-1"><i class="fa fa-check"></i><b>4.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="4.3" data-path="tidy.html"><a href="tidy.html#states-read-and-plot"><i class="fa fa-check"></i><b>4.3</b> States: read and plot</a></li>
+<li class="chapter" data-level="4.4" data-path="tidy.html"><a href="tidy.html#challenge-analytical-steps"><i class="fa fa-check"></i><b>4.4</b> Challenge: analytical steps?</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="tidy.html"><a href="tidy.html#answers-1"><i class="fa fa-check"></i><b>4.4.1</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="tidy.html"><a href="tidy.html#regions-calculate-water"><i class="fa fa-check"></i><b>4.5</b> Regions: calculate % water</a></li>
+<li class="chapter" data-level="4.6" data-path="tidy.html"><a href="tidy.html#regions-plot"><i class="fa fa-check"></i><b>4.6</b> Regions: plot</a></li>
+<li class="chapter" data-level="4.7" data-path="tidy.html"><a href="tidy.html#regions-ggplot"><i class="fa fa-check"></i><b>4.7</b> Regions: ggplot</a></li>
+<li class="chapter" data-level="4.8" data-path="tidy.html"><a href="tidy.html#regions-recalculate-area"><i class="fa fa-check"></i><b>4.8</b> Regions: recalculate area</a></li>
+<li class="chapter" data-level="4.9" data-path="tidy.html"><a href="tidy.html#challenge-project-recalculate-area"><i class="fa fa-check"></i><b>4.9</b> Challenge: project &amp; recalculate area</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="tidy.html"><a href="tidy.html#answers-2"><i class="fa fa-check"></i><b>4.9.1</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="tidy.html"><a href="tidy.html#key-points-1"><i class="fa fa-check"></i><b>4.10</b> Key Points</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="setup-skip.html"><a href="setup-skip.html"><i class="fa fa-check"></i>Setup Skipped</a><ul>
+<li class="chapter" data-level="4.11" data-path="setup-skip.html"><a href="setup-skip.html#create-rstudio-project"><i class="fa fa-check"></i><b>4.11</b> Create RStudio project</a><ul>
+<li class="chapter" data-level="4.11.1" data-path="setup-skip.html"><a href="setup-skip.html#create-relative-path-to-data-folder"><i class="fa fa-check"></i><b>4.11.1</b> Create relative path to data folder</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="setup-skip.html"><a href="setup-skip.html#download-data"><i class="fa fa-check"></i><b>4.12</b> Download data</a></li>
+<li class="chapter" data-level="4.13" data-path="setup-skip.html"><a href="setup-skip.html#install-r-packages"><i class="fa fa-check"></i><b>4.13</b> Install R Packages</a></li>
+<li class="chapter" data-level="4.14" data-path="setup-skip.html"><a href="setup-skip.html#create-rmarkdown-file"><i class="fa fa-check"></i><b>4.14</b> Create Rmarkdown file</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">California Coastal Poll Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="references" class="section level1 unnumbered">
+<h1>References</h1>
+<p><strong>Spatial Analysis in R books</strong></p>
+<ul>
+<li><a href="http://robinlovelace.net/geocompr/">Geocomputation with R - robinlovelace.net/geocompr</a></li>
+<li><a href="http://www.rspatial.org/">Spatial Data Analysis and Modeling with R — rspatial.org</a></li>
+<li><a href="http://www.spatialanalysisonline.com/HTML/index.html">Geospatial Analysis 5th Edition, 2015 - spatialanalysisonline.com</a></li>
+</ul>
+<p><strong>Spatial Analysis in R blogs</strong></p>
+<ul>
+<li><a href="https://cran.r-project.org/web/views/Spatial.html">CRAN Task View: Analysis of Spatial Data</a></li>
+<li><a href="http://rspatial.r-forge.r-project.org/">R spatial projects</a></li>
+<li><a href="http://rspatial.r-forge.r-project.org/gallery/">R sp graphics example figures</a></li>
+<li><a href="http://spatial.ly/r/">Maps and Data Visualisations with R – spatial.ly</a></li>
+</ul>
+<p><strong>Spatial Analysis in R courses</strong></p>
+<ul>
+<li><a href="https://www.datacamp.com/courses/working-with-geospatial-data-in-r">Spatial Analysis in R - datacamp.com</a></li>
+<li><a href="https://data.cdrc.ac.uk/tutorial/an-introduction-to-spatial-data-analysis-and-visualisation-in-r">An Introduction to Spatial Data Analysis and Visualisation in R - CDRC Data</a></li>
+<li><a href="https://cengel.github.io/rspatial/">Introduction to Mapping and Spatial Analysis with R - cengel.github.io/rspatial</a></li>
+<li><a href="http://geog.uoregon.edu/bartlein/courses/geog495/index.html">GEOG 4/595: Geographic Data Analysis - geog.uoregon.edu</a></li>
+<li><a href="http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/index.html">Geospatial Data in R and Beyond - maths.lancs.ac.uk</a>
+<ul>
+<li><a href="http://www.maths.lancs.ac.uk/~rowlings/Teaching/UseR2012/cheatsheet.html">R Spatial Cheatsheet</a></li>
+</ul></li>
+</ul>
+<p><strong>Tidy Spatial Analysis</strong></p>
+<ul>
+<li><a href="http://strimas.com/r/tidy-sf/">Tidy spatial data in R: using dplyr, tidyr, and ggplot2 with sf</a></li>
+<li><a href="https://www.rstudio.com/resources/cheatsheets/">Cheatsheets – RStudio</a></li>
+</ul>
+<p><strong>Interactive Maps</strong></p>
+<ul>
+<li><a href="http://remi-daigle.github.io/2016-04-15-UCSB/viz/">Visualization in R - 2016-04-15-UCSB workshop</a></li>
+<li><a href="http://rstudio.github.io/leaflet/"><code>leaflet</code></a></li>
+<li><a href="http://r-spatial.org/r/2017/01/30/mapedit_intro.html"><code>mapedit</code></a></li>
+<li><a href="https://r-spatial.github.io/mapview/"><code>mapview</code></a></li>
+</ul>
+
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/lesson.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="tidy.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="setup-skip.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bbest/calcoastpoll-tutorial/edit/master/04-references.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["calcoastpoll-tutorial.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

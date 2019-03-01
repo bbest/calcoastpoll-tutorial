@@ -1,0 +1,3 @@
+[
+["analysis.html", "Lesson 3 Analysis in Rmarkdown 3.1 Overview 3.2 Download 3.3 Read 3.4 Rmarkdown options 3.5 Key Points", " Lesson 3 Analysis in Rmarkdown 3.1 Overview Objectives Learn variety of methods for working in R: Download files Use paths relative to *.Rproject with here::here() 3.2 Download 3.3 Read How do you read data from an Excel spreadsheet? Tidyverse packages - Tidyverse CRAN Task Views 3.4 Rmarkdown options R Markdown: 3.1 HTML document | R Markdown: The Definitive Guide --- title: &quot;Analysis&quot; output: html_document --- output: html_document: code_folding: hide knitr::opts_chunk$set(echo = TRUE) knitr::opts_chunk$set(echo = TRUE, message = F, warning = F) 3.5 Key Points … "]
+]

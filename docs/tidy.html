@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Lesson 4 Tidy Spatial Analysis | California Coastal Poll Tutorial</title>
+  <meta name="description" content="These Data Carpentry lessons are for teaching simple usage of advanced spatial analysis libraries (sf, leaflet, ggmap and ggplot2).">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
+
+  <meta property="og:title" content="Lesson 4 Tidy Spatial Analysis | California Coastal Poll Tutorial" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="These Data Carpentry lessons are for teaching simple usage of advanced spatial analysis libraries (sf, leaflet, ggmap and ggplot2)." />
+  <meta name="github-repo" content="bbest/R-adv-spatial-lessons" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lesson 4 Tidy Spatial Analysis | California Coastal Poll Tutorial" />
+  
+  <meta name="twitter:description" content="These Data Carpentry lessons are for teaching simple usage of advanced spatial analysis libraries (sf, leaflet, ggmap and ggplot2)." />
+  
+
+<meta name="author" content="Ben Best">
+
+
+<meta name="date" content="2019-03-01">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="interactive.html">
+<link rel="next" href="references.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets-1.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.8.0/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.0.0/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.0.0/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.39.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.39.2/plotly-latest.min.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.2/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.1.17/leaflet-providers.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.2/leaflet-providers-plugin.js"></script>
+<link href="libs/HomeButton-0.0.1/home-button.css" rel="stylesheet" />
+<script src="libs/HomeButton-0.0.1/home-button.js"></script>
+<script src="libs/HomeButton-0.0.1/easy-button-src.min.js"></script>
+<link href="libs/PopupTable-0.0.1/popup.css" rel="stylesheet" />
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+<link rel="stylesheet" href="css/style.css" type="text/css" />
+<link rel="stylesheet" href="css/lesson.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">CA Coastal Poll Tutorial</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#overview"><i class="fa fa-check"></i><b>1.1</b> Overview</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i><b>1.2</b> Prerequisites</a><ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#install-software"><i class="fa fa-check"></i><b>1.2.1</b> Install software</a></li>
+<li class="chapter" data-level="1.2.2" data-path="index.html"><a href="index.html#create-github-login"><i class="fa fa-check"></i><b>1.2.2</b> Create Github login</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#launch-rstudio"><i class="fa fa-check"></i><b>1.3</b> Launch RStudio</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html"><i class="fa fa-check"></i><b>2</b> Collaborate: git, Github</a><ul>
+<li class="chapter" data-level="2.1" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#overview-1"><i class="fa fa-check"></i><b>2.1</b> Overview</a></li>
+<li class="chapter" data-level="2.2" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#what-are-git-and-github"><i class="fa fa-check"></i><b>2.2</b> What are git and Github?</a></li>
+<li class="chapter" data-level="2.3" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#create-repository-calcoastpoll-analysis"><i class="fa fa-check"></i><b>2.3</b> Create repository <code>calcoastpoll-analysis</code></a><ul>
+<li class="chapter" data-level="2.3.1" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#edit-readme.md-in-markdown"><i class="fa fa-check"></i><b>2.3.1</b> Edit <code>README.md</code> in Markdown</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#create-index.html"><i class="fa fa-check"></i><b>2.4</b> Create <code>index.html</code></a></li>
+<li class="chapter" data-level="2.5" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#setup-git"><i class="fa fa-check"></i><b>2.5</b> Setup Git</a></li>
+<li class="chapter" data-level="2.6" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#github-workflows"><i class="fa fa-check"></i><b>2.6</b> Github Workflows</a><ul>
+<li class="chapter" data-level="2.6.1" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#push-pull"><i class="fa fa-check"></i><b>2.6.1</b> Push &amp; Pull</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#create-rstudio-project-with-git-repository"><i class="fa fa-check"></i><b>2.7</b> Create RStudio Project with Git Repository</a></li>
+<li class="chapter" data-level="2.8" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#create-index.rmd-in-rmarkdown"><i class="fa fa-check"></i><b>2.8</b> Create <code>index.Rmd</code> in Rmarkdown</a></li>
+<li class="chapter" data-level="2.9" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#exercise-intertidal-sites-dataset"><i class="fa fa-check"></i><b>2.9</b> Exercise: Intertidal Sites Dataset</a><ul>
+<li class="chapter" data-level="2.9.1" data-path="collaborate-git-github.html"><a href="collaborate-git-github.html#task-provide-excel-cell-ranges-for-how-you-would-divide-data-into-tables"><i class="fa fa-check"></i><b>2.9.1</b> Task: Provide Excel cell ranges for how you would divide data into tables?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="interactive.html"><a href="interactive.html"><i class="fa fa-check"></i><b>3</b> Interactive Maps</a><ul>
+<li class="chapter" data-level="3.1" data-path="interactive.html"><a href="interactive.html#overview-2"><i class="fa fa-check"></i><b>3.1</b> Overview</a></li>
+<li class="chapter" data-level="3.2" data-path="interactive.html"><a href="interactive.html#things-youll-need-to-complete-this-tutorial"><i class="fa fa-check"></i><b>3.2</b> Things You’ll Need to Complete this Tutorial</a></li>
+<li class="chapter" data-level="3.3" data-path="interactive.html"><a href="interactive.html#states-ggplot2"><i class="fa fa-check"></i><b>3.3</b> States: ggplot2</a></li>
+<li class="chapter" data-level="3.4" data-path="interactive.html"><a href="interactive.html#states-plotly"><i class="fa fa-check"></i><b>3.4</b> States: plotly</a></li>
+<li class="chapter" data-level="3.5" data-path="interactive.html"><a href="interactive.html#states-mapview"><i class="fa fa-check"></i><b>3.5</b> States: mapview</a></li>
+<li class="chapter" data-level="3.6" data-path="interactive.html"><a href="interactive.html#states-leaflet"><i class="fa fa-check"></i><b>3.6</b> States: leaflet</a><ul>
+<li class="chapter" data-level="3.6.1" data-path="interactive.html"><a href="interactive.html#choropleth"><i class="fa fa-check"></i><b>3.6.1</b> Choropleth</a></li>
+<li class="chapter" data-level="3.6.2" data-path="interactive.html"><a href="interactive.html#popups-and-legend"><i class="fa fa-check"></i><b>3.6.2</b> Popups and Legend</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="interactive.html"><a href="interactive.html#challenge-leaflet-for-regions"><i class="fa fa-check"></i><b>3.7</b> Challenge: leaflet for regions</a><ul>
+<li class="chapter" data-level="3.7.1" data-path="interactive.html"><a href="interactive.html#answers"><i class="fa fa-check"></i><b>3.7.1</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="3.8" data-path="interactive.html"><a href="interactive.html#raster-leaflet"><i class="fa fa-check"></i><b>3.8</b> Raster: leaflet</a></li>
+<li class="chapter" data-level="3.9" data-path="interactive.html"><a href="interactive.html#key-points"><i class="fa fa-check"></i><b>3.9</b> Key Points</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="tidy.html"><a href="tidy.html"><i class="fa fa-check"></i><b>4</b> Tidy Spatial Analysis</a><ul>
+<li class="chapter" data-level="4.1" data-path="tidy.html"><a href="tidy.html#overview-3"><i class="fa fa-check"></i><b>4.1</b> Overview</a></li>
+<li class="chapter" data-level="4.2" data-path="tidy.html"><a href="tidy.html#prerequisites-1"><i class="fa fa-check"></i><b>4.2</b> Prerequisites</a></li>
+<li class="chapter" data-level="4.3" data-path="tidy.html"><a href="tidy.html#states-read-and-plot"><i class="fa fa-check"></i><b>4.3</b> States: read and plot</a></li>
+<li class="chapter" data-level="4.4" data-path="tidy.html"><a href="tidy.html#challenge-analytical-steps"><i class="fa fa-check"></i><b>4.4</b> Challenge: analytical steps?</a><ul>
+<li class="chapter" data-level="4.4.1" data-path="tidy.html"><a href="tidy.html#answers-1"><i class="fa fa-check"></i><b>4.4.1</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="tidy.html"><a href="tidy.html#regions-calculate-water"><i class="fa fa-check"></i><b>4.5</b> Regions: calculate % water</a></li>
+<li class="chapter" data-level="4.6" data-path="tidy.html"><a href="tidy.html#regions-plot"><i class="fa fa-check"></i><b>4.6</b> Regions: plot</a></li>
+<li class="chapter" data-level="4.7" data-path="tidy.html"><a href="tidy.html#regions-ggplot"><i class="fa fa-check"></i><b>4.7</b> Regions: ggplot</a></li>
+<li class="chapter" data-level="4.8" data-path="tidy.html"><a href="tidy.html#regions-recalculate-area"><i class="fa fa-check"></i><b>4.8</b> Regions: recalculate area</a></li>
+<li class="chapter" data-level="4.9" data-path="tidy.html"><a href="tidy.html#challenge-project-recalculate-area"><i class="fa fa-check"></i><b>4.9</b> Challenge: project &amp; recalculate area</a><ul>
+<li class="chapter" data-level="4.9.1" data-path="tidy.html"><a href="tidy.html#answers-2"><i class="fa fa-check"></i><b>4.9.1</b> Answers</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="tidy.html"><a href="tidy.html#key-points-1"><i class="fa fa-check"></i><b>4.10</b> Key Points</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="setup-skip.html"><a href="setup-skip.html"><i class="fa fa-check"></i>Setup Skipped</a><ul>
+<li class="chapter" data-level="4.11" data-path="setup-skip.html"><a href="setup-skip.html#create-rstudio-project"><i class="fa fa-check"></i><b>4.11</b> Create RStudio project</a><ul>
+<li class="chapter" data-level="4.11.1" data-path="setup-skip.html"><a href="setup-skip.html#create-relative-path-to-data-folder"><i class="fa fa-check"></i><b>4.11.1</b> Create relative path to data folder</a></li>
+</ul></li>
+<li class="chapter" data-level="4.12" data-path="setup-skip.html"><a href="setup-skip.html#download-data"><i class="fa fa-check"></i><b>4.12</b> Download data</a></li>
+<li class="chapter" data-level="4.13" data-path="setup-skip.html"><a href="setup-skip.html#install-r-packages"><i class="fa fa-check"></i><b>4.13</b> Install R Packages</a></li>
+<li class="chapter" data-level="4.14" data-path="setup-skip.html"><a href="setup-skip.html#create-rmarkdown-file"><i class="fa fa-check"></i><b>4.14</b> Create Rmarkdown file</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">California Coastal Poll Tutorial</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tidy" class="section level1">
+<h1><span class="header-section-number">Lesson 4</span> Tidy Spatial Analysis</h1>
+<div id="overview-3" class="section level2 objectives">
+<h2><span class="header-section-number">4.1</span> Overview</h2>
+<p><strong>Questions</strong></p>
+<ul>
+<li>How to elegantly conduct complex spatial analysis by chaining operations?</li>
+<li>What is the percent area of water by region across the United States?</li>
+</ul>
+<p><strong>Objectives</strong></p>
+<ul>
+<li>Use the <code>%&gt;%</code> operator (aka “then” or “pipe”) to pass output from one function into input of the next.</li>
+<li>Calculate metrics on spatial attributes.</li>
+<li>Aggregate spatial data with metrics.</li>
+<li>Display a map of results.</li>
+</ul>
+</div>
+<div id="prerequisites-1" class="section level2 prereq">
+<h2><span class="header-section-number">4.2</span> Prerequisites</h2>
+<p><strong>R Skill Level</strong>: Intermediate - you’ve got basics of R down.</p>
+<p>You will use the <code>sf</code> package for vector data along with the <code>dplyr</code> package for calculating and manipulating attribute data.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load packages</span>
+<span class="kw">library</span>(tidyverse)  <span class="co"># load dplyr, tidyr, ggplot2 packages</span>
+<span class="kw">library</span>(sf)         <span class="co"># vector reading &amp; analysis</span>
+
+<span class="co"># set working directory to data folder</span>
+<span class="co"># setwd(&quot;pathToDirHere&quot;)</span></code></pre></div>
+</div>
+<div id="states-read-and-plot" class="section level2">
+<h2><span class="header-section-number">4.3</span> States: read and plot</h2>
+<p>Similar to <a href="https://jsta.github.io/R-spatial-raster-vector-lesson/09-vector-when-data-dont-line-up-crs/">Lesson 9: Handling Spatial Projection &amp; CRS in R</a>, we’ll start by reading in a polygon shapefile using the <code>sf</code> package. Then use the default <code>plot()</code> function to see what it looks like.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># read in states</span>
+states &lt;-<span class="st"> </span><span class="kw">read_sf</span>(<span class="st">&quot;data/NEON-DS-Site-Layout-Files/US-Boundary-Layers/US-State-Boundaries-Census-2014.shp&quot;</span>)
+
+<span class="co"># plot the states</span>
+<span class="kw">plot</span>(states)</code></pre></div>
+<pre><code>## Warning: plotting the first 9 out of 10 attributes; use max.plot = 10 to
+## plot all</code></pre>
+<p><img src="calcoastpoll-tutorial_files/figure-html/plot-states-1.png" width="672" /></p>
+<p>Notice the default plot on <code>sf</code> objects outputs colorized values of the first 9 of 10 columns. Use the suggestion from the warning to plot the 10th column.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot 10th column</span>
+<span class="kw">plot</span>(states, <span class="dt">max.plot =</span> <span class="dv">10</span>)</code></pre></div>
+<p><img src="calcoastpoll-tutorial_files/figure-html/plot-states-10-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># show columns of the data frame</span>
+<span class="kw">names</span>(states)</code></pre></div>
+<pre><code>##  [1] &quot;STATEFP&quot;  &quot;STATENS&quot;  &quot;AFFGEOID&quot; &quot;GEOID&quot;    &quot;STUSPS&quot;   &quot;NAME&quot;    
+##  [7] &quot;LSAD&quot;     &quot;ALAND&quot;    &quot;AWATER&quot;   &quot;region&quot;   &quot;geometry&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># look at table</span>
+<span class="kw">glimpse</span>(states)</code></pre></div>
+<pre><code>## Observations: 58
+## Variables: 11
+## $ STATEFP  &lt;chr&gt; &quot;06&quot;, &quot;11&quot;, &quot;12&quot;, &quot;13&quot;, &quot;16&quot;, &quot;17&quot;, &quot;19&quot;, &quot;21&quot;, &quot;22&quot;, &quot;…
+## $ STATENS  &lt;chr&gt; &quot;01779778&quot;, &quot;01702382&quot;, &quot;00294478&quot;, &quot;01705317&quot;, &quot;017797…
+## $ AFFGEOID &lt;chr&gt; &quot;0400000US06&quot;, &quot;0400000US11&quot;, &quot;0400000US12&quot;, &quot;0400000US…
+## $ GEOID    &lt;chr&gt; &quot;06&quot;, &quot;11&quot;, &quot;12&quot;, &quot;13&quot;, &quot;16&quot;, &quot;17&quot;, &quot;19&quot;, &quot;21&quot;, &quot;22&quot;, &quot;…
+## $ STUSPS   &lt;chr&gt; &quot;CA&quot;, &quot;DC&quot;, &quot;FL&quot;, &quot;GA&quot;, &quot;ID&quot;, &quot;IL&quot;, &quot;IA&quot;, &quot;KY&quot;, &quot;LA&quot;, &quot;…
+## $ NAME     &lt;chr&gt; &quot;California&quot;, &quot;District of Columbia&quot;, &quot;Florida&quot;, &quot;Georg…
+## $ LSAD     &lt;chr&gt; &quot;00&quot;, &quot;00&quot;, &quot;00&quot;, &quot;00&quot;, &quot;00&quot;, &quot;00&quot;, &quot;00&quot;, &quot;00&quot;, &quot;00&quot;, &quot;…
+## $ ALAND    &lt;dbl&gt; 403483823181, 158350578, 138903200855, 148963503399, 21…
+## $ AWATER   &lt;dbl&gt; 20483271881, 18633500, 31407883551, 4947080103, 2397728…
+## $ region   &lt;chr&gt; &quot;West&quot;, &quot;Northeast&quot;, &quot;Southeast&quot;, &quot;Southeast&quot;, &quot;West&quot;, …
+## $ geometry &lt;MULTIPOLYGON [°]&gt; MULTIPOLYGON Z (((-118.594 ..., MULTIPOLYG…</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># convert to tibble for nicer printing</span>
+<span class="kw">as_tibble</span>(states)</code></pre></div>
+<pre><code>## # A tibble: 58 x 11
+##    STATEFP STATENS AFFGEOID GEOID STUSPS NAME  LSAD    ALAND  AWATER region
+##    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;    &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt; 
+##  1 06      017797… 0400000… 06    CA     Cali… 00    4.03e11 2.05e10 West  
+##  2 11      017023… 0400000… 11    DC     Dist… 00    1.58e 8 1.86e 7 North…
+##  3 12      002944… 0400000… 12    FL     Flor… 00    1.39e11 3.14e10 South…
+##  4 13      017053… 0400000… 13    GA     Geor… 00    1.49e11 4.95e 9 South…
+##  5 16      017797… 0400000… 16    ID     Idaho 00    2.14e11 2.40e 9 West  
+##  6 17      017797… 0400000… 17    IL     Illi… 00    1.44e11 6.20e 9 Midwe…
+##  7 19      017797… 0400000… 19    IA     Iowa  00    1.45e11 1.08e 9 Midwe…
+##  8 21      017797… 0400000… 21    KY     Kent… 00    1.02e11 2.39e 9 South…
+##  9 22      016295… 0400000… 22    LA     Loui… 00    1.12e11 2.38e10 South…
+## 10 24      017149… 0400000… 24    MD     Mary… 00    2.51e10 6.98e 9 North…
+## # … with 48 more rows, and 1 more variable: geometry &lt;MULTIPOLYGON [°]&gt;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">names</span>(states)</code></pre></div>
+<pre><code>##  [1] &quot;STATEFP&quot;  &quot;STATENS&quot;  &quot;AFFGEOID&quot; &quot;GEOID&quot;    &quot;STUSPS&quot;   &quot;NAME&quot;    
+##  [7] &quot;LSAD&quot;     &quot;ALAND&quot;    &quot;AWATER&quot;   &quot;region&quot;   &quot;geometry&quot;</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># inspect the class(es) of the states object</span>
+<span class="kw">class</span>(states)</code></pre></div>
+<pre><code>## [1] &quot;sf&quot;         &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<p>The class of the <code>states</code> object is both a simple feature (<code>sf</code>) as well as a data frame, which means the many useful functions available to a data frame (or “tibble”) can be applied.</p>
+<p>To plot the column of interest, feed the “slice” of that column to the <code>plot()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">plot</span>(states[<span class="st">&#39;region&#39;</span>])</code></pre></div>
+<p><img src="calcoastpoll-tutorial_files/figure-html/plot-states-region-1.png" width="672" /></p>
+<p><strong>Question</strong>: To motivate the spatial analysis for the rest of this lesson, you will answer this question: “<em><strong>What is the percent water by region?</strong></em>”</p>
+</div>
+<div id="challenge-analytical-steps" class="section level2 challenge">
+<h2><span class="header-section-number">4.4</span> Challenge: analytical steps?</h2>
+<p>Outline a sequence of analytical steps needed to arrive at the answer.</p>
+<div id="answers-1" class="section level3 solution">
+<h3><span class="header-section-number">4.4.1</span> Answers</h3>
+<ol style="list-style-type: decimal">
+<li><strong>Sum</strong> the area of water (<code>AWATER</code>) and land (<code>ALAND</code>) per region.</li>
+<li><strong>Divide</strong> the area of water (<code>AWATER</code>) by the area of land (<code>ALAND</code>) per region to arrive at percent water.</li>
+<li>Show <strong>table</strong> of regions sorted by percent water.</li>
+<li>Show <strong>map</strong> of regions by percent water with a color ramp and legend.</li>
+</ol>
+</div>
+</div>
+<div id="regions-calculate-water" class="section level2">
+<h2><span class="header-section-number">4.5</span> Regions: calculate % water</h2>
+<ul>
+<li>Use the <code>%&gt;%</code> operator (aka “then” or “pipe”) to pass output from one function into input of the next.
+<ul>
+<li>In RStudio, see menu Help &gt; Keyboard Shortcuts Help for a shortcut to the “Insert Pipe Operator”.</li>
+</ul></li>
+<li>Calculate metrics on spatial attributes.
+<ul>
+<li>In RStudio, see menu Help &gt; Cheatsheets &gt; <a href="https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/data-transformation-cheatsheet.pdf">Data Manipulation with dplyr, tidyr</a>.</li>
+</ul></li>
+<li>Aggregate spatial data with metrics.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">regions =<span class="st"> </span>states <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(region) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(
+    <span class="dt">water =</span> <span class="kw">sum</span>(AWATER),
+    <span class="dt">land  =</span> <span class="kw">sum</span>(ALAND)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">pct_water =</span> water <span class="op">/</span><span class="st"> </span>land <span class="op">*</span><span class="st"> </span><span class="dv">100</span> <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">round</span>(<span class="dv">2</span>))
+
+<span class="co"># object</span>
+regions</code></pre></div>
+<pre><code>## Simple feature collection with 5 features and 4 fields
+## geometry type:  GEOMETRY
+## dimension:      XYZ
+## bbox:           xmin: -124.7258 ymin: 24.49813 xmax: -66.9499 ymax: 49.38436
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs
+## # A tibble: 5 x 5
+##   region      water     land pct_water                             geometry
+##   &lt;chr&gt;       &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;                       &lt;GEOMETRY [°]&gt;
+## 1 Midwest   1.84e11  1.94e12      9.49 MULTIPOLYGON Z (((-82.86334 41.6936…
+## 2 Northe…   1.09e11  8.69e11     12.5  MULTIPOLYGON Z (((-76.04621 38.0255…
+## 3 Southe…   1.04e11  1.36e12      7.61 MULTIPOLYGON Z (((-81.81169 24.5687…
+## 4 Southw…   2.42e10  1.46e12      1.66 POLYGON Z ((-94.48587 33.63787 0, -…
+## 5 West      5.76e10  2.43e12      2.37 MULTIPOLYGON Z (((-118.594 33.03595…</code></pre>
+<p>Notice the geometry in the column. To remove the geometry column pipe to <code>st_set_geometry(NULL)</code>. To arrange in descending order use <code>arrange(desc(pct_water))</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># table</span>
+regions <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">st_set_geometry</span>(<span class="ot">NULL</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(pct_water))</code></pre></div>
+<pre><code>## # A tibble: 5 x 4
+##   region           water          land pct_water
+##   &lt;chr&gt;            &lt;dbl&gt;         &lt;dbl&gt;     &lt;dbl&gt;
+## 1 Northeast 108922434345  869066138232     12.5 
+## 2 Midwest   184383393833 1943869253244      9.49
+## 3 Southeast 103876652998 1364632039655      7.61
+## 4 West       57568049509 2432336444730      2.37
+## 5 Southwest  24217682268 1462631530997      1.66</code></pre>
+</div>
+<div id="regions-plot" class="section level2">
+<h2><span class="header-section-number">4.6</span> Regions: plot</h2>
+<p>Now plot the regions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot, default</span>
+<span class="kw">plot</span>(regions[<span class="st">&#39;pct_water&#39;</span>])</code></pre></div>
+<p><img src="calcoastpoll-tutorial_files/figure-html/plot-regions-pctwater-1.png" width="672" /></p>
+</div>
+<div id="regions-ggplot" class="section level2">
+<h2><span class="header-section-number">4.7</span> Regions: ggplot</h2>
+<p>The <code>ggplot2</code> library can <a href="http://ggplot2.tidyverse.org/reference/ggsf.html">visualise sf objects</a>.</p>
+<ul>
+<li>In RStudio, see menu Help &gt; Cheatsheets &gt; <a href="https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/ggplot2-cheatsheet-2.1.pdf">Data Visualization with ggplot2</a>.</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot, ggplot</span>
+<span class="kw">ggplot</span>(regions) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> pct_water)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_distiller</span>(
+    <span class="st">&quot;pct_water&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>, <span class="dt">direction=</span><span class="dv">1</span>,
+    <span class="dt">guide =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;% water&quot;</span>, <span class="dt">reverse=</span>T)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;% Water by US Region&quot;</span>)</code></pre></div>
+<p><img src="calcoastpoll-tutorial_files/figure-html/ggplot-regions-pctwater-1.png" width="672" /></p>
+</div>
+<div id="regions-recalculate-area" class="section level2">
+<h2><span class="header-section-number">4.8</span> Regions: recalculate area</h2>
+<p>So far you’ve used the <code>ALAND</code> column for area of the state. But what if you were not provided the area and needed to calculate it? Because the <code>states</code> are in geographic coordinates, you’ll need to either transform to an equal area projection and calculate area, or use geodesic calculations. Thankfully, the <code>sf</code> library provides area calculations with the <code>st_area()</code> and uses the <code>geosphere::distGeo()</code> to perform geodesic calculations (ie trigonometric calculation accounting for the spheroid nature of the earth). Since the <code>states</code> data has the unusual aspect of a z dimension, you’ll need to first remove that with the <code>st_zm()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(geosphere)
+<span class="kw">library</span>(units)
+
+regions =<span class="st"> </span>states <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">water_m2 =</span> AWATER <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">set_units</span>(m<span class="op">^</span><span class="dv">2</span>),
+    <span class="dt">land_m2  =</span> geometry <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_zm</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_area</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(region) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(
+    <span class="dt">water_m2 =</span> <span class="kw">sum</span>(water_m2),
+    <span class="dt">land_m2  =</span> <span class="kw">sum</span>(land_m2)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">pct_water =</span> water_m2 <span class="op">/</span><span class="st"> </span>land_m2)
+
+<span class="co"># table</span>
+regions <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">st_set_geometry</span>(<span class="ot">NULL</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(pct_water))</code></pre></div>
+<pre><code>## # A tibble: 5 x 4
+##   region        water_m2      land_m2  pct_water
+##   &lt;chr&gt;            [m^2]        [m^2]        [1]
+## 1 Northeast 108922434345 9.117041e+11 0.11947126
+## 2 Midwest   184383393833 1.987268e+12 0.09278233
+## 3 Southeast 103876652998 1.427079e+12 0.07278971
+## 4 West       57568049509 2.467170e+12 0.02333363
+## 5 Southwest  24217682268 1.483765e+12 0.01632178</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot, ggplot</span>
+<span class="kw">ggplot</span>(regions) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">as.numeric</span>(pct_water))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_distiller</span>(
+    <span class="st">&quot;pct_water&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>, <span class="dt">direction=</span><span class="dv">1</span>,
+    <span class="dt">guide =</span> <span class="kw">guide_legend</span>(<span class="dt">title =</span> <span class="st">&quot;% water&quot;</span>, <span class="dt">reverse=</span>T)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;% Water by US Region&quot;</span>)</code></pre></div>
+<p><img src="calcoastpoll-tutorial_files/figure-html/plot-regions-area-1.png" width="672" /></p>
+</div>
+<div id="challenge-project-recalculate-area" class="section level2 challenge">
+<h2><span class="header-section-number">4.9</span> Challenge: project &amp; recalculate area</h2>
+<p>Use <code>st_transform()</code> with a <a href="http://spatialreference.org/ref/esri/usa-contiguous-albers-equal-area-conic/">USA Contiguous Albers Equal Area Conic Projection</a> that minimizes distoration, and then calculate area using the <code>st_area()</code> function.</p>
+<div id="answers-2" class="section level3 solution">
+<h3><span class="header-section-number">4.9.1</span> Answers</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(geosphere)
+<span class="kw">library</span>(units)
+
+<span class="co"># Proj4 of http://spatialreference.org/ref/esri/usa-contiguous-albers-equal-area-conic/</span>
+crs_usa =<span class="st"> &#39;+proj=aea +lat_1=29.5 +lat_2=45.5 +lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +datum=NAD83 +units=m +no_defs&#39;</span>
+
+regions =<span class="st"> </span>states <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">st_transform</span>(crs_usa) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">water_m2 =</span> AWATER <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">set_units</span>(m<span class="op">^</span><span class="dv">2</span>),
+    <span class="dt">land_m2  =</span> geometry <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_zm</span>() <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">st_area</span>()) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(region) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(
+    <span class="dt">water_m2 =</span> <span class="kw">sum</span>(water_m2),
+    <span class="dt">land_m2  =</span> <span class="kw">sum</span>(land_m2)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">pct_water =</span> water_m2 <span class="op">/</span><span class="st"> </span>land_m2)
+
+<span class="co"># table</span>
+regions <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">st_set_geometry</span>(<span class="ot">NULL</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">arrange</span>(<span class="kw">desc</span>(pct_water))</code></pre></div>
+<pre><code>## # A tibble: 5 x 4
+##   region        water_m2      land_m2  pct_water
+##   &lt;chr&gt;            [m^2]        [m^2]        [1]
+## 1 Northeast 108922434345 9.117031e+11 0.11947138
+## 2 Midwest   184383393833 1.987266e+12 0.09278246
+## 3 Southeast 103876652998 1.427078e+12 0.07278973
+## 4 West       57568049509 2.467167e+12 0.02333367
+## 5 Southwest  24217682268 1.483758e+12 0.01632185</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot, ggplot</span>
+<span class="kw">ggplot</span>(regions) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> <span class="kw">as.numeric</span>(pct_water))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_distiller</span>(<span class="st">&quot;pct_water&quot;</span>, <span class="dt">palette =</span> <span class="st">&quot;Spectral&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;% Water (geodesic) by US Region&quot;</span>)</code></pre></div>
+<p><img src="calcoastpoll-tutorial_files/figure-html/recalc-regions-transform-1.png" width="672" /></p>
+</div>
+</div>
+<div id="key-points-1" class="section level2 keypoints">
+<h2><span class="header-section-number">4.10</span> Key Points</h2>
+<ul>
+<li>The <code>sf</code> package can take advantage of chaining spatial operations using the <code>%&gt;%</code> operator.</li>
+<li>Data manipulation functions in <code>dplyr</code> such as <code>group_by()</code>, <code>summarize()</code> and <code>mutate()</code> work on <code>sf</code> objects.</li>
+<li>Area can be calculated a variety of ways. Geodesic is preferred if starting with geographic coordinates (vs projected).</li>
+</ul>
+
+</div>
+</div>
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/lesson.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="interactive.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/bbest/calcoastpoll-tutorial/edit/master/03-tidy.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"download": ["calcoastpoll-tutorial.pdf"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

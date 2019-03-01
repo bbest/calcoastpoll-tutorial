@@ -1,0 +1,67 @@
+--- 
+title: "California Coastal Poll Tutorial"
+author: "Ben Best"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+output: bookdown::gitbook
+documentclass: book
+link-citations: yes
+github-repo: bbest/R-adv-spatial-lessons
+description: "These Data Carpentry lessons are for teaching simple usage of advanced spatial analysis libraries (sf, leaflet, ggmap and ggplot2)."
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=T, cache=T)
+library(htmltools)
+```
+
+# Introduction {#intro}
+
+## Overview {.objectives}
+
+**Questions**
+
+Using data from the California Coastal Poll:
+
+- What are attitudes towards climate change?
+- How can I visualize this?
+- How can I share results online?
+
+**Objectives**
+
+- Use **RStudio** to code in **R**.
+- Read data from an Excel spreadsheet into R (using R package `readxl`).
+- Summarize data (using `dplyr`).
+- Visualize data (using `ggplot2`).
+- Version files with **git**.
+- Share results online with **Github**.
+
+## Prerequisites {.prereq}
+
+**R Skill Level**: Beginner -- you can be completely new to R, RStudio, git and Github. This will give you a flavor for how they work.
+
+### Install software
+
+1.This workshop will require the following software installed on your machine:
+
+- [**git**](https://git-scm.com): version control 
+- [**R**](http://cran.cnr.berkeley.edu/): statistical programming language
+- [**RStudio**](https://www.rstudio.com/products/rstudio/download/#download): integrated development environment
+
+Please download the appropriate stable release for your operating system.
+
+### Create Github login
+
+Create **Github** account at <http://github.com>, if you don't already have one. For username, I recommend all lower-case letters, short as you can. Ideally the username that prefixes your csuci.edu email is available. If you use an email ending in `.edu`, you can request free private repositories through [GitHub Education](https://education.github.com/).
+
+Be sure to keep track of your username and password, referred to as `USER` and `PASSWORD` throughout the rest of this tutorial, to be replaced by YOUR username and password.
+
+## Launch RStudio
+
+RStudio is as it is an integrated development environment (IDE) for editing text in the code editor, running commands in the R console, viewing defined objects in the workspace and past commands in the history, and viewing plots, files and help. Here's a layout of the panes in RStudio, each of which can have several tabs for alternate functionality:
+
+![](figs/rstudio.png)
+
+For a quick overview of the RStudio interface, check out the menu Help > Cheatsheets > [RStudio IDE Cheat Sheet](https://github.com/rstudio/cheatsheets/raw/master/rstudio-ide.pdf).
+
+We'll use RStudio shortly, but first let's create a repository in Github for synchronizing file versioning and publication of results online.
